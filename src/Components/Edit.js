@@ -86,7 +86,7 @@ class Edit extends Component {
                             <input type="text" value={director} onChange={this.changeDirector.bind(this)} />
 
                             <label>Rating:</label>
-                            <input type="range" min="0.0" max="5" value={rating} onChange={this.changeRating.bind(this)} />
+                            <input type="range" min="0.0" max="5.0" value={rating} onChange={this.changeRating.bind(this)} />
                         </div>
                         <textarea value={description2} onChange={this.changeDescription.bind(this)} cols="30" rows="10"></textarea>
 
