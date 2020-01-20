@@ -66,6 +66,7 @@ class Edit extends Component {
         axios
             .put(`http://3.120.96.16:3001/movies/${id}`, data)
         .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     render() {

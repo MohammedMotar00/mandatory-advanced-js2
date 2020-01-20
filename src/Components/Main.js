@@ -24,12 +24,18 @@ class Main extends Component {
         })
     }
 
-    sendMovieInfo = (e) => {
-        console.log(e.target.parentElement.parentElement.parentElement)
-    }
+    removeMovie = (id, title, director, rating) => {
+        let data = {
+            "id": id,
+            "title": title,
+            "director": director,
+            "rating": rating
+        }
 
-    deleteMovie = (e) => {
-        console.log()
+        axios
+            .delete(`http://3.120.96.16:3001/movies/${id}`, data)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
     }
 
     render() {
@@ -51,11 +57,12 @@ class Main extends Component {
                     <td>{data.rating}</td>
 
                     <td>
-                        {/* <DeleteMovie /> */}
-                        <button type="submit" onClick={this.sendMovieInfo}>Delete movie</button>
+                        <button type="submit" onClick={() => this.removeMovie(data.id, data.title, data.director, data.rating)}>Delete movie</button>
+
                     <Link to={"/edit/" + data.id}>
                         <p>Edit the movie</p>
                     </Link>
+
                     <Link to={"/details/" + data.id}>
                         <p>Details</p>
                     </Link>
