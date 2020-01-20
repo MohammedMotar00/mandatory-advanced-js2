@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-
-import NavLinks from './NavLinks';
-import DeleteMovie from './DeleteMovie';
+import { Helmet } from 'react-helmet';
 
 class Main extends Component {
     constructor(props) {
@@ -11,7 +9,10 @@ class Main extends Component {
     
         this.state = {
             items: [],
-            removeMovie: ''
+            removeMovie: '',
+            filter: '',
+
+            finished: false
         }
     }
 
@@ -20,27 +21,32 @@ class Main extends Component {
             .get('http://3.120.96.16:3001/movies')
         .then(res => {
             let data = res.data;
-            this.setState({items: data})
+            this.setState({items: data});
+            this.setState({finished: true});
         })
+        .catch(() => this.setState({finished: false}));
     }
 
-    removeMovie = (id, title, director, rating) => {
-        let data = {
-            "id": id,
-            "title": title,
-            "director": director,
-            "rating": rating
-        }
+    removeMovie = (id) => {
 
         axios
-            .delete(`http://3.120.96.16:3001/movies/${id}`, data)
+            .delete(`http://3.120.96.16:3001/movies/${id}`)
         .then(res => console.log(res))
-        .catch(err => console.log(err))
+    }
+
+    searchMovie = (e) => {
+        return this.setState({filter: e.target.value})
     }
 
     render() {
-        const { items } = this.state;
-// document.querySelector('#root').chi
+        const { items, filter, finished } = this.state;
+
+        if(!finished) {
+            return (
+                <p>Server fel</p>
+            )
+        }
+
         let main = <table>
         <thead>
             <tr>
@@ -50,14 +56,27 @@ class Main extends Component {
             </tr>
         </thead>
         <tbody>
-            {items.map(data => (
+
+            {items.filter((sMovie) => {
+                let search = filter;
+
+                if (!search) {
+                    return sMovie
+                } else {
+                    if (sMovie.title.indexOf(search) === -1 && sMovie.director.indexOf(search) === -1) {
+                        return false
+                    } else {
+                        return true
+                    }
+                } 
+            }).map(data => (
                 <tr key={data.id}>
                     <td>{data.title}</td>
                     <td>{data.director}</td>
                     <td>{data.rating}</td>
 
                     <td>
-                        <button type="submit" onClick={() => this.removeMovie(data.id, data.title, data.director, data.rating)}>Delete movie</button>
+                        <button type="submit" onClick={() => this.removeMovie(data.id)}>Delete movie</button>
 
                     <Link to={"/edit/" + data.id}>
                         <p>Edit the movie</p>
@@ -74,7 +93,11 @@ class Main extends Component {
 
         return (
             <div>
-                <NavLinks />
+                <Helmet>
+                    <title>Main page</title>
+                </Helmet>
+
+                <input type="text" onChange={this.searchMovie.bind(this)}/>
                 {main}
             </div>
         )

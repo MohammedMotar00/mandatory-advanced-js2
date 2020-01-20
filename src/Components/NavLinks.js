@@ -11,14 +11,6 @@ function NavLinks() {
             <Link to="/add">
                 <p>Add</p>
             </Link>
-
-            <Link to="/edit">
-                <p>Edit</p>
-            </Link>
-
-            <Link to="/details">
-                <p>Details</p>
-            </Link>
         </div>
     )
 }

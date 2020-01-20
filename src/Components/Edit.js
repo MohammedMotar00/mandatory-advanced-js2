@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 class Edit extends Component {
     constructor(props) {
@@ -11,7 +12,10 @@ class Edit extends Component {
             director: '',
             rating: '',
             description2: '',
-            id: props.id
+            id: props.id,
+
+            errEdit: false,
+            errServer: false
         }
     }
 
@@ -30,10 +34,7 @@ class Edit extends Component {
 
             this.setState({description: descrp})
         })
-    }
-
-    componentWillUpdate() {
-        // console.log(this.state.id)
+        .catch(() => this.setState({errServer: true}))
     }
 
     changeTitle = e => {
@@ -66,11 +67,15 @@ class Edit extends Component {
         axios
             .put(`http://3.120.96.16:3001/movies/${id}`, data)
         .then(res => console.log(res))
-        .catch(err => console.log(err))
+        .catch(() => this.setState({errEdit: true}))
     }
 
     render() {
-        const { description, title,rating, director, description2 } = this.state;
+        const { description, title,rating, director, description2, errEdit, errServer } = this.state;
+
+        if (errEdit) return <p>OBS fel i servern, återkom senare!</p>
+
+        if (errServer) return <p>OBS filmen är inte tillänglig</p>
 
         let oldMovieInfo = description.map(info => {
             let data = info.data;
@@ -98,6 +103,9 @@ class Edit extends Component {
 
         return (
             <div>
+                <Helmet>
+                    <title>Edit page</title>
+                </Helmet>
                 {oldMovieInfo}
             </div>
         )

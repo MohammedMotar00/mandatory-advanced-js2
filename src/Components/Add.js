@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 class Add extends Component {
     constructor(props) {
@@ -9,7 +11,10 @@ class Add extends Component {
             title: '',
             director: '',
             rating: '',
-            description: ''
+            description: '',
+
+            finished: false,
+            catchErr: false
         }
     }
 
@@ -29,7 +34,7 @@ class Add extends Component {
         this.setState({description: e.target.value})
     }
 
-    addMovie = () => {
+    addMovie = (e) => {
         let { title, director, rating, description } = this.state;
 
         let data = {
@@ -41,16 +46,28 @@ class Add extends Component {
 
         axios
             .post('http://3.120.96.16:3001/movies', data)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        .then(() => this.setState({finished: true}))
+        .catch(() => this.setState({catchErr: true}))
     }
 
 
     render() {
-        const { title, director, rating, description } = this.state;
+        const { catchErr ,finished ,title, director, rating, description } = this.state;
+
+        if (finished) {
+            return <Redirect to="/"/>
+        }
+
+        if (catchErr) {
+            return <p>Kan inte adda flera filmer, antigen så är det fel på servern eller så är det redan upp till 20 filmer addade  OSB max 20 filmer kan addas</p>
+        }
+
         return (
             <div>
-                <form onSubmit={event => event.preventDefault()}>
+                <Helmet>
+                    <title>Add page</title>
+                </Helmet>
+                <form onSubmit={e => e.preventDefault()}>
                     <div>
                         <label>Title:</label>
                         <input type="text" value={title} onChange={this.addTitle.bind(this)} />

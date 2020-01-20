@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 class Details extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-            description: []
+            description: [],
+            finished: false
         }
     }
 
@@ -21,10 +23,15 @@ class Details extends Component {
 
             this.setState({description: descrp})
         })
+        .catch(() => this.setState({finished: true}))
     }
 
     render() {
-        const { description } = this.state;
+        const { description, finished } = this.state;
+
+        if(finished) {
+            return <p>Filmen finns ej längre</p>
+        }
 
         let movieDescription = description.map(info => {
             let data = info.data;
@@ -47,6 +54,9 @@ class Details extends Component {
 
         return (
             <div>
+                <Helmet>
+                    <title>Details page</title>
+                </Helmet>
                 {movieDescription}
             </div>
         )
