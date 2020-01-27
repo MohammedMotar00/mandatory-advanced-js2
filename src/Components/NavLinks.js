@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom'
 
 function NavLinks() {
     return (
-        <div>
+        <div className="NavLinks">
             <Link to="/">
-                <p>Main</p>
+                <p className="p-links">Main</p>
             </Link>
 
             <Link to="/add">
-                <p>Add</p>
+                <p className="p-links">Add</p>
             </Link>
         </div>
     )

@@ -68,20 +68,31 @@ class Add extends Component {
                     <title>Add page</title>
                 </Helmet>
                 <form onSubmit={e => e.preventDefault()}>
-                    <div>
-                        <label>Title:</label>
-                        <input type="text" value={title} onChange={this.addTitle.bind(this)} />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <label style={{ padding: '6rem', fontSize:'2rem' }}>Title:
+                            <input type="text" minLength="1" maxLength="40" value={title} onChange={this.addTitle.bind(this)} style={{ fontSize: '1.3rem' }} />
+                        </label>
 
-                        <label>Director:</label>
-                        <input type="text" value={director} onChange={this.addDirector.bind(this)} />
+                        <label style={{ padding: '6rem', fontSize:'2rem' }}>Director:
+                            <input type="text" minLength="1" maxLength="40" value={director} onChange={this.addDirector.bind(this)} style={{ fontSize: '1.3rem' }} />
+                        </label>
 
-                        <label>Rating:</label>
-                        <input type="range" min="0.0" max="5.0" value={rating} onChange={this.addRating.bind(this)} />
+                        <label style={{ padding: '6rem', fontSize:'2rem' }}>Rating:
+                            <input type="range" min="0.0" max="5.0" value={rating} onChange={this.addRating.bind(this)} style={{ fontSize: '1.3rem' }} />
+                        </label>
                     </div>
 
-                    <textarea value={description} onChange={this.addDescription.bind(this)} cols="30" rows="10" placeholder="Write movie description..."></textarea>
+                    <div style={{ marginLeft: '5rem', padding: '3rem' }}>
+                    <textarea 
+                        value={description}
+                        onChange={this.addDescription.bind(this)}
+                        minLength="1" maxLength="300"
+                        cols="60" rows="10"
+                        style={{ fontSize: '1.8rem' }}
+                        placeholder="Write movie description..."></textarea>
 
-                    <button type="submit" onClick={this.addMovie.bind(this)}>Add movie</button>
+                        <button type="submit" onClick={this.addMovie.bind(this)} style={{ fontSize: '2rem', marginLeft: '2rem', borderRadius: '20%', backgroundColor: 'green' }} >Add movie</button>
+                    </div>
                 </form>
             </div>
         )

@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
+import Img from '../img/image1.png';
+
+// import '../App.css';
 
 class Main extends Component {
     constructor(props) {
@@ -47,7 +50,7 @@ class Main extends Component {
             )
         }
 
-        let main = <table>
+        let main = <table className="table-main">
         <thead>
             <tr>
                 <th>Title</th>
@@ -63,7 +66,7 @@ class Main extends Component {
                 if (!search) {
                     return sMovie
                 } else {
-                    if (sMovie.title.indexOf(search) === -1 && sMovie.director.indexOf(search) === -1) {
+                    if (sMovie.title.toLowerCase().indexOf(search) === -1 && sMovie.director.toLowerCase().indexOf(search) === -1) {
                         return false
                     } else {
                         return true
@@ -71,11 +74,11 @@ class Main extends Component {
                 } 
             }).map(data => (
                 <tr key={data.id}>
-                    <td>{data.title}</td>
-                    <td>{data.director}</td>
-                    <td>{data.rating}</td>
+                    <td className="td-main">{data.title}</td>
+                    <td className="td-main">{data.director}</td>
+                    <td className="td-main">{data.rating}</td>
 
-                    <td>
+                    <td className="btn-edit-details">
                         <button type="submit" onClick={() => this.removeMovie(data.id)}>Delete movie</button>
 
                     <Link to={"/edit/" + data.id}>
@@ -97,7 +100,14 @@ class Main extends Component {
                     <title>Main page</title>
                 </Helmet>
 
-                <input type="text" onChange={this.searchMovie.bind(this)}/>
+                <div className="div-searchMovie">
+                    <input 
+                        type="text" 
+                        onChange={this.searchMovie.bind(this)}
+                        placeholder="Search for movies ..."
+                        className="input-searchMovie"
+                    />
+                </div>
                 {main}
             </div>
         )

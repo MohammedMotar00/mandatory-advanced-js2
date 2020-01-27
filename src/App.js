@@ -10,12 +10,27 @@ import Edit from './Components/Edit';
 import Details from './Components/Details';
 import NavLinks from './Components/NavLinks';
 
+import Img from './img/image1.png';
+
 function App() {
   return (
     <div className="App">
       <Router>
 
         <NavLinks />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <h2 style={{ fontSize: '4rem' }}>EC Movie Editor</h2>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <img 
+                        src={Img} 
+                        style={{ 
+                            height: '20rem',
+                            width: '20rem',
+                            marginBottom: '2rem'
+                    }}/>
+                </div>
 
         <Route exact path="/" component={Main} />
         <Route path="/add" component={Add} />
