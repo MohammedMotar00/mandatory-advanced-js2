@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet';
-import Img from '../img/image1.png';
-
-// import '../App.css';
 
 class Main extends Component {
     constructor(props) {

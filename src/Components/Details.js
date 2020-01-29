@@ -42,15 +42,19 @@ class Details extends Component {
                             <p style={{ padding: '6rem', fontSize:'2rem' }}>Title: {data.title}</p>
                             <p style={{ padding: '6rem', fontSize:'2rem' }}>Director: {data.director}</p>
                             <p style={{ padding: '6rem', fontSize:'2rem' }}>Rating: {data.rating}</p>
+
                             <Link to={"/edit/" + data.id} style={{ padding: '6rem', fontSize:'2rem' }}>
-                                <button style={{ fontSize: '2rem', borderRadius: '20%', backgroundColor: 'green' }}>Edit movie</button>
+                                <button style={{ 
+                                                fontSize: '2rem', 
+                                                borderRadius: '20%', 
+                                                backgroundColor: 'green' }}>Edit movie</button>
                             </Link>
                         </div>
                     </div>
 
                     <div style={{ marginLeft: '5rem', padding: '3rem' }}>
                     <strong style={{ fontSize: '3rem' }}>Description:</strong>
-                        <p style={{ wordBreak: 'break-all', fontSize: '1.4rem', letterSpacing: '0.04em' }}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur in delectus iste sequi molestiae rem cupiditate velit laboriosam dolores perferendis quaerat officia vero, quisquam accusamus repudiandae magni earum provident nihil. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis suscipit fuga ipsam quos fugit assumenda neque laboriosam inventore sunt, ad quis voluptatem aliquid accusamus sapiente aperiam officia odit veritatis accusantium. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias tenetur eaque accusantium, neque, ex ut tempore alias animi saepe ea error odio quia modi eos laudantium sapiente velit adipisci porro?{data.description}</p>
+                        <p style={{ wordBreak: 'break-all', fontSize: '1.4rem', letterSpacing: '0.04em' }}>{data.description}</p>
                     </div>
                 </div>
             )

@@ -70,15 +70,38 @@ class Add extends Component {
                 <form onSubmit={e => e.preventDefault()}>
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <label style={{ padding: '6rem', fontSize:'2rem' }}>Title:
-                            <input type="text" minLength="1" maxLength="40" value={title} onChange={this.addTitle.bind(this)} style={{ fontSize: '1.3rem' }} />
+                            <input 
+                                type="text" 
+                                minLength="1" 
+                                maxLength="40" 
+                                value={title} 
+                                onChange={this.addTitle.bind(this)} 
+                                style={{ fontSize: '1.3rem' }}
+                            />
                         </label>
 
                         <label style={{ padding: '6rem', fontSize:'2rem' }}>Director:
-                            <input type="text" minLength="1" maxLength="40" value={director} onChange={this.addDirector.bind(this)} style={{ fontSize: '1.3rem' }} />
+                            <input 
+                                type="text"
+                                minLength="1" 
+                                maxLength="40" 
+                                value={director} 
+                                onChange={this.addDirector.bind(this)} 
+                                style={{ fontSize: '1.3rem' }} 
+                            />
                         </label>
 
                         <label style={{ padding: '6rem', fontSize:'2rem' }}>Rating:
-                            <input type="range" min="0.0" max="5.0" value={rating} onChange={this.addRating.bind(this)} style={{ fontSize: '1.3rem' }} />
+                            <input 
+                                type="range" 
+                                min="0.0" 
+                                step="0.1" 
+                                max="5.0" 
+                                value={rating} 
+                                onChange={this.addRating.bind(this)} 
+                                style={{ fontSize: '1.3rem' }} 
+                            />
+                            <p>{rating}</p>
                         </label>
                     </div>
 
@@ -91,7 +114,15 @@ class Add extends Component {
                         style={{ fontSize: '1.8rem' }}
                         placeholder="Write movie description..."></textarea>
 
-                        <button type="submit" onClick={this.addMovie.bind(this)} style={{ fontSize: '2rem', marginLeft: '2rem', borderRadius: '20%', backgroundColor: 'green' }} >Add movie</button>
+                        <button 
+                            type="submit" 
+                            onClick={this.addMovie.bind(this)} 
+                            style={{ 
+                                    fontSize: '2rem', 
+                                    marginLeft: '2rem', 
+                                    borderRadius: '20%', 
+                                    backgroundColor: 'green' 
+                                    }}>Add movie</button>
                     </div>
                 </form>
             </div>

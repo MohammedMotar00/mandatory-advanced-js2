@@ -85,22 +85,56 @@ class Edit extends Component {
                     <form onSubmit={event => event.preventDefault()}>
                         <div style={{ display: 'flex', justifyContent: 'center' }}>
                             <label style={{ padding: '6rem', fontSize:'2rem' }}>Title:
-                                <input type="text" value={title} onChange={this.changeTitle.bind(this)} style={{ fontSize: '1.3rem' }} />
+                                <input 
+                                    type="text" 
+                                    value={title} 
+                                    onChange={this.changeTitle.bind(this)} 
+                                    style={{ fontSize: '1.3rem' }} 
+                                />
                             </label>
 
                             <label style={{ padding: '6rem', fontSize:'2rem' }}>Director:
-                                <input type="text" value={director} onChange={this.changeDirector.bind(this)} style={{ fontSize: '1.3rem' }} />
+                                <input 
+                                    type="text" 
+                                    value={director} 
+                                    onChange={this.changeDirector.bind(this)} 
+                                    style={{ fontSize: '1.3rem' }} 
+                                />
                             </label>
 
                             <label style={{ padding: '6rem', fontSize:'2rem' }}>Rating:
-                                <input type="text" min="0.0" max="5.0" value={rating} onChange={this.changeRating.bind(this)} style={{ fontSize: '1.3rem' }} />
+                                <input 
+                                    type="range" 
+                                    min="0.0" 
+                                    step="0.1" 
+                                    max="5.0" 
+                                    value={rating} 
+                                    onChange={this.changeRating.bind(this)} 
+                                    style={{ fontSize: '1.3rem' }} 
+                                />
+                                <p>{rating}</p>
                             </label>
                         </div>
 
                         <div style={{ marginLeft: '5rem', padding: '3rem' }}>
                             <strong style={{ fontSize: '3rem' }}>Description:</strong> <br/>
-                            <textarea maxLength="300" style={{ fontSize: '1.8rem' }} value={description2} onChange={this.changeDescription.bind(this)} cols="60" rows="10"></textarea>
-                            <button style={{ fontSize: '2rem', marginLeft: '2rem', borderRadius: '20%', backgroundColor: 'green' }} type="submit" onClick={this.saveChanges.bind(this)}>Save changes</button>
+                            <textarea 
+                                maxLength="300" 
+                                style={{ fontSize: '1.8rem' }} 
+                                value={description2} 
+                                onChange={this.changeDescription.bind(this)} 
+                                cols="60" 
+                                rows="10"
+                            ></textarea>
+                            <button 
+                                style={{ 
+                                        fontSize: '2rem', 
+                                        marginLeft: '2rem', 
+                                        borderRadius: '20%', 
+                                        backgroundColor: 'green' 
+                                        }} 
+                                type="submit" 
+                                onClick={this.saveChanges.bind(this)}>Save changes</button>
                         </div>
                     </form>
                 </div>
